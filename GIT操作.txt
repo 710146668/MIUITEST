@@ -36,3 +36,19 @@ git push -f origin master
 
 存储帐号密码配置到本地
 git config --global credential.helper store
+
+
+
+
+1、git config --list   //查看git配置信息
+2、git config user.name   //查看git用户名
+3、git config user.email   //查看邮箱配置
+4、git config --global user.name "xxx"   //全局配置用户名
+5、git config --global user.email "xxx"   //全局配置邮箱
+
+1、git init   //创建裸仓库；需在项目路径下执行，执行后项目中会出现.git文件
+2、git remote add origin https://github.com/710146668/MIUITEST.git   //将本地仓库和远程仓库关联
+3、git pull origin master  //拉取远程仓库的东西，并与本地仓库合并
+4、git add .   //将文件存进暂存区
+5、git commit -am "xxx"  //提交信息
+6、git push -u origin master   //提交到远程仓库
