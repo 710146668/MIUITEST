@@ -3,6 +3,8 @@ https://github.com/710146668/MIUITEST/raw/master/MIUITEST
 [强制更新]off
 [下载链接]https://github.com/710146668/MIUITEST/raw/master/MIUITEST.zip
 
+BeyondCompare提示"许可证密钥已被撤销"的解决办法：
+删除 AppData\Roaming\Scooter Software\Beyond Compare 4目录下所有文件
 
 https://git-for-windows.github.io/
 
