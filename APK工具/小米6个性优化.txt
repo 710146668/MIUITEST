@@ -1,0 +1,44 @@
+一、services.jar优化
+打开/system/framework/services.jar，以Dex++编辑器打开classes.dex。
+
+1、【手势与按键共存教程】：
+搜索方法名shouldInterceptKey
+.method private shouldInterceptKey(IZZ)Z
+   .registers 10
+
+   const/4 v0, 0x0
+
+   return v0
+.end method
+
+2、【允许所有应用强制停止教程】：
+搜索方法名closeapp，进入之后，搜索“mSystemKeyPackages”，然后将下面的 if-eqz v8 改为 goto。
+   move-result v8
+
+   goto :goto_bd
+
+3、【允许冻结所有应用教程】：
+搜索方法名isAllowedDisable
+.method static isAllowedDisable(Ljava/lang/String;I)Z
+   .registers 4
+
+   const/4 v0, 0x1
+
+   return v0
+.end method
+
+4、【去除卡米限制教程】：
+搜索方法名checkSystemSelfProtection
+把line中间那三段代码删除，即含有Lcom/miui/server/SecurityManagerService$1的代码。
+
+5、【秒截图教程】：
+搜索方法名getScreenshotChordLongPressDelay
+.method private getScreenshotChordLongPressDelay()J
+   .registers 4
+
+   const-wide/16 v1, 0x0
+
+   move-wide v0, v1
+
+   return-wide v0
+.end method
