@@ -234,3 +234,34 @@
 
    goto :goto_10
 .end method
+
+二、其他优化
+1、【双排信号教程】
+首先找到/system/priv-app/MiuiSystemUI/MiuiSystemUI.apk
+打开里面的classes.dex
+
+9.0搜索
+iget-boolean v0, p0, Lcom/android/systemui/statusbar/SignalClusterView;->mNotchEar:Z
+10.0搜索
+iget-boolean p0, p0, Lcom/android/systemui/statusbar/SignalClusterView;->mNotchEar:Z
+
+点击第一条记录
+9.0在下面添加const/4 v0, 0x1
+10.0在它下面添加const/4 p0, 0x1
+
+再搜索invoke-direct {p0}, Lcom/android/systemui/statusbar/SignalClusterView;->notchEarDualEnable()Z
+点击第一条记录
+9.0把它下面的move-result v0改成const/4 v0, 0x1
+10.0把它下面的move-result p0改成const/4 p0, 0x1
+
+退出保存重启即可。
+
+2、【MIUI状态栏显示天气】
+将下载的classes2.dex文件
+移动到/system/priv-app/MiuiSystemUI/MiuiSystemUI.apk，打开/res/layout/quick_status_bar_expanded_header.xml进行反编译，并把下面这段代码加在<ImageView前面
+
+<com.android.systemui.statusbar.WeatherView android:textAppearance="@style/TextAppearance.StatusBar.Expanded.Weather" 
+android:textSize="10dp"
+android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+退出保存重启即可。
